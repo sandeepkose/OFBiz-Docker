@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  db-server:
+#   Use the Docker Image postgres. This will pull the newest release.
+    image: postgres
+    container_name: db-Container
+#   Setup the username, password, and database name. You can changes these values.
+    env_file:
+      - ./config.env
+#   Maps port 54320 (localhost) to port 5432 on the container. You can change the ports to fix your needs.
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+  
+  ofbiz:
+    build: .
+    image: ofbiz
+    container_name: OFBiz-Container
+    volumes:
+      - ./ofbiz:/ofbiz
+    depends_on:
+      - db-server
+    links:
+      - db-server
+    ports:
+      - "8443:8443"
+      - "8080:8080"
