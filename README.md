@@ -18,10 +18,12 @@ Step 3. Clone Apache OFBiz repo either by git repo or svn on any branch with nam
 # git clone -b trunk https://github.com/apache/ofbiz-framework.git ofbiz
 
 Step 4. Run compose-up.sh to build OFBiz docker images and deploy it either with Mysql or PostgreSql.
- a) Deploy OFBiz with Mysql Database.
- # ./compose-up.sh mysql
- b) Deploy OFBiz with PostgreSQL Database.
- # ./compose-up.sh postgres
+
+a) Deploy OFBiz with Mysql Database.
+# ./compose-up.sh mysql
+ 
+b) Deploy OFBiz with PostgreSQL Database.
+# ./compose-up.sh postgres
 Once compose-up.sh is executed secessfully it will take some time to build and deploy images.
 
 Step 5. Access Apache OFBiz at https://localhost:8443/ and https://localhost:8443/webtools/control/main
