@@ -8,8 +8,6 @@ RUN apk update && \
     apk upgrade && \
     apk add git && \
     apk add bash && \
-    apk add vim && \
-    apk add curl && \
     apk add subversion && \
     apk add mysql-client
 
