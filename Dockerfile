@@ -19,6 +19,4 @@ COPY config.env entrypoint.sh /root/
 EXPOSE 8443
 EXPOSE 8080
 WORKDIR /root/
-ENTRYPOINT ./entrypoint.sh  && sleep 3  && tail -f /ofbiz/runtime/logs/ofbiz.log && bash
-#ENTRYPOINT tail -f /root/logs &&  tail -f runtime/logs/ofbiz.log
-
+ENTRYPOINT ./entrypoint.sh  && sleep 2  && tail -f /ofbiz/runtime/logs/ofbiz.log && bash
