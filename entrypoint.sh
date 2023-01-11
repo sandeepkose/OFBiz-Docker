@@ -16,8 +16,19 @@ source /root/config.env
 DB_TYPE=`echo "$DB_TYPE"`
 DB_HOST=db-server
 
+checkcontent=`grep -n "  runtimeOnly" build.gradle`
+if [ $? = 0 ] ; then
+        line=`grep -n "  runtimeOnly" build.gradle | cut -d : -f 1 | head -1`
+        sed -i "$line"i" runtimeOnly 'mysql:mysql-connector-java:5.1.49'" build.gradle
+        sed -i "$line"i" runtimeOnly 'org.postgresql:postgresql:42.2.5.jre7'" build.gradle
+     else
+          line=`grep -n "   runtime" build.gradle | cut -d : -f 1 | head -1`
+          sed -i "$line"i" runtime 'mysql:mysql-connector-java:5.1.49'" build.gradle
+          sed -i "$line"i" runtime 'org.postgresql:postgresql:42.2.5.jre7'" build.gradle
+fi
+
 if [ $DB_TYPE = mysql ]; then
-	sed -i "181i runtime 'mysql:mysql-connector-java:5.1.47'" build.gradle
+#	sed -i "181i runtime 'mysql:mysql-connector-java:5.1.47'" build.gradle
 	sed -i -e 's/ofbiz?autoReconnect=true/'$MYSQL_DATABASE'?autoReconnect=true/' $ConfFile
 	sed -i -e 's/jdbc-username="ofbiz"/jdbc-username="'$MYSQL_USER'"/' $ConfFile
         sed -i -e 's/jdbc-password="ofbiz"/jdbc-password="'$MYSQL_PASSWORD'"/' $ConfFile
@@ -25,7 +36,7 @@ if [ $DB_TYPE = mysql ]; then
 	mysql -h db-server -uroot -p$MYSQL_ROOT_PASSWORD -e "CREATE DATABASE IF NOT EXISTS ofbizolap; CREATE DATABASE IF NOT EXISTS ofbiztenant; grant all privileges on *.* to '$MYSQL_USER'@'%' identified by '$MYSQL_PASSWORD';"
 fi
 if [ $DB_TYPE = postgres ]; then
-	sed -i "181i runtime 'org.postgresql:postgresql:42.2.5.jre7'" build.gradle
+#	sed -i "181i runtime 'org.postgresql:postgresql:42.2.5.jre7'" build.gradle
         sed -i -e '482,491s/ofbiz/'$POSTGRES_DB'/' $ConfFile
 	sed -i -e 's/jdbc-username="'ofbiz'"/jdbc-username="'$POSTGRES_USER'"/' $ConfFile
         sed -i -e 's/jdbc-password="'ofbiz'"/jdbc-password="'$POSTGRES_PASSWORD'"/' $ConfFile
