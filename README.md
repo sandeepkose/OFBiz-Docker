@@ -15,7 +15,7 @@ Step 2. Go to cloned directory.
 # cd OFBiz-Docker
 
 Step 3. Clone Apache OFBiz repo either by git repo or svn on any branch with named ofbiz in the same cloned (OFBiz-Docker) directory.
-# git clone -b trunk https://github.com/apache/ofbiz-framework.git ofbiz
+# git clone -b release18.12 https://github.com/apache/ofbiz-framework.git ofbiz
 
 Step 4. Run compose-up.sh to build OFBiz docker images and deploy it either with Mysql or PostgreSql.
 
