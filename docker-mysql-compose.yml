@@ -20,6 +20,7 @@ services:
     container_name: OFBiz-Containers
     volumes:
       - ./ofbiz:/ofbiz
+      - ./.gradle:/root/.gradle
     depends_on:
       - db-server
     links:
