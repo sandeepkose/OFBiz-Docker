@@ -1,6 +1,25 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:recommended",
+    "docker:pinDigests",
+    "regexManagers:dockerfileVersions"
+  ],
+  "baseBranches": [
+    "master"
+  ],
+  "useBaseBranchConfig": "merge",
+  "rebaseWhen": "behind-base-branch",
+  "enabled": true,
+  "gitAuthor": "Renovate Bot <sandeep.kose@gmail.com>",
+  "minimumReleaseAge": "3 days",
+  "dependencyDashboard": false,
+  "dependencyDashboardApproval": false,
+  "separateMinorPatch": true,
+  "docker": {
+    "pinDigests": true
+  },
+  "docker-compose": {
+    "pinDigests": true
+  }]
 }
