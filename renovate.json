@@ -6,7 +6,7 @@
     "regexManagers:dockerfileVersions"
   ],
   "baseBranches": [
-    "main"
+    "master"
   ],
   "useBaseBranchConfig": "merge",
   "rebaseWhen": "behind-base-branch",
